@@ -1,14 +1,14 @@
-output "cluster_name" {
-  description = "Name of the EKS cluster"
-  value       = module.eks.cluster_name
+terraform {
+  required_version = ">= 1.5.0"
+
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
 }
 
-output "cluster_endpoint" {
-  description = "Endpoint for the EKS control plane"
-  value       = module.eks.cluster_endpoint
-}
-
-output "region" {
-  description = "AWS region used"
-  value       = var.aws_region
+provider "aws" {
+  region = var.aws_region
 }
