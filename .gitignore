@@ -2,4 +2,4 @@
 /__pycache__
 /.vscode
 /feedback/__pycache__
-/feedback/.env
+feedback/.env
