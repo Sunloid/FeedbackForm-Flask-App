@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: feedback-app
+  labels:
+    app: feedback-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: feedback-app
+  template:
+    metadata:
+      labels:
+        app: feedback-app
+    spec:
+      containers:
+        - name: feedback-app
+          image: <YOUR_ACCOUNT_ID>.dkr.ecr.ap-south-1.amazonaws.com/feedback-app:latest
+          ports:
+            - containerPort: 5000
+          env:
+            - name: MONGODB
+              valueFrom:
+                secretKeyRef:
+                  name: feedback-app-secret
+                  key: mongodb-uri
+            - name: SECRETKEY
+              valueFrom:
+                secretKeyRef:
+                  name: feedback-app-secret
+                  key: flask-secret-key
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "250m"
+              memory: "256Mi"
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 5000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 5000
+            initialDelaySeconds: 10
+            periodSeconds: 20

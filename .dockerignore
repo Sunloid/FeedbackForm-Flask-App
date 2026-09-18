@@ -5,3 +5,5 @@
 /feedback/.env
 /venv
 README.MD
+/k8s
+/infra
