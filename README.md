@@ -80,3 +80,13 @@ We would like to acknowledge the following open source projects for their valuab
 
 
 ## Author : Prathamesh Dhande
+
+
+## Rough: 
+aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 533267397460.dkr.ecr.ap-south-1.amazonaws.com/feedback-app
+
+docker tag feedback-app:latest <YOUR_ACCOUNT_ID>.dkr.ecr.ap-south-1.amazonaws.com/feedback-app:latest
+
+docker push <YOUR_ACCOUNT_ID>.dkr.ecr.ap-south-1.amazonaws.com/feedback-app:latest
+
+aws eks update-kubeconfig --name feedbackform-cluster --region ap-south-1

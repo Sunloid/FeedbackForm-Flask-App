@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: feedback-app
-          image: <YOUR_ACCOUNT_ID>.dkr.ecr.ap-south-1.amazonaws.com/feedback-app:latest
+          image: 533267397460.dkr.ecr.ap-south-1.amazonaws.com/feedback-app:latest
           ports:
             - containerPort: 5000
           env:
